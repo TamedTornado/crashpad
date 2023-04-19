@@ -105,6 +105,9 @@ int main(int argc, char** argv)
     std::cout << "Crashpad database: " << db_path << '\n';
     std::cerr << startCrashHandler(url, handler_path, db_path) << '\n';
 
+    int i;
+    std::cin >> i;
+
     int should_crash = 1;
     if (should_crash)
         Crash();
