@@ -330,7 +330,10 @@ if (LINUX)
             ./net/http_transport_libcurl.cc
         )
     elseif (CRASHPAD_HTTPS_TRANSPORT STREQUAL "NONE")
-        message (STATUS "HTTPS transport disabled")
+        message (STATUS "HTTPS transport disabled (HTTP only)")
+        list(APPEND CRASHPAD_UTIL_LIBRARY_FILES
+            ./net/http_transport_socket.cc
+        )
     else ()
         message(FATAL_ERROR "Unknown HTTPS transport: ${CRASHPAD_HTTPS_TRANSPORT}")
     endif ()
