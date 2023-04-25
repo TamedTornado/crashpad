@@ -311,13 +311,13 @@ endif (WIN32)
 if (LINUX)
         # ./net/http_transport_socket.cc
         # ./net/http_transport_libcurl.cc
-    if (NOT DEFINED CRASHPAD_HTTP_TRANSPORT)
+    if (NOT DEFINED CRASHPAD_HTTPS_TRANSPORT)
         if (OPENSSL_FOUND)
-            set(CRASHPAD_HTTP_TRANSPORT "OPENSSL" CACHE STRING "HTTP transport to use")
+            set(CRASHPAD_HTTPS_TRANSPORT "OPENSSL" CACHE STRING "HTTPS transport to use")
         else ()
-            set(CRASHPAD_HTTP_TRANSPORT "CURL" CACHE STRING "HTTP transport to use")
+            set(CRASHPAD_HTTPS_TRANSPORT "CURL" CACHE STRING "HTTPS transport to use")
         endif ()
-    endif (NOT DEFINED CRASHPAD_HTTP_TRANSPORT)
+    endif (NOT DEFINED CRASHPAD_HTTPS_TRANSPORT)
 
     if (CRASHPAD_HTTPS_TRANSPORT STREQUAL "OPENSSL")
         message (STATUS "Using OpenSSL for HTTPS transport")
