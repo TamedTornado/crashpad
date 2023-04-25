@@ -43,8 +43,8 @@ target_compile_definitions(backtrace_common INTERFACE
     CRASHPAD_LSS_SOURCE_EMBEDDED)
 
 if (ANDROID)
-    option(CRASHPAD_HTTP_TRANSPORT "Crashpad HTTP transport" "OPENSSL")
-    if (CRASHPAD_HTTP_TRANSPORT STREQUAL "OPENSSL")
+    option(CRASHPAD_HTTPS_TRANSPORT "Crashpad HTTPS transport" "OPENSSL")
+    if (CRASHPAD_HTTPS_TRANSPORT STREQUAL "OPENSSL")
         add_subdirectory(third_party/openssl-android-binary)
     endif()
 elseif (APPLE)

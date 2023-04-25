@@ -319,18 +319,20 @@ if (LINUX)
         endif ()
     endif (NOT DEFINED CRASHPAD_HTTP_TRANSPORT)
 
-    if (CRASHPAD_HTTP_TRANSPORT STREQUAL "OPENSSL")
-        message (STATUS "Using OpenSSL for HTTP transport")
+    if (CRASHPAD_HTTPS_TRANSPORT STREQUAL "OPENSSL")
+        message (STATUS "Using OpenSSL for HTTPS transport")
         list(APPEND CRASHPAD_UTIL_LIBRARY_FILES
             ./net/http_transport_socket.cc
         )
-    elseif (CRASHPAD_HTTP_TRANSPORT STREQUAL "CURL")
-        message (STATUS "Using libcurl for HTTP transport")
+    elseif (CRASHPAD_HTTPS_TRANSPORT STREQUAL "CURL")
+        message (STATUS "Using libcurl for HTTPS transport")
         list(APPEND CRASHPAD_UTIL_LIBRARY_FILES
             ./net/http_transport_libcurl.cc
         )
+    elseif (CRASHPAD_HTTPS_TRANSPORT STREQUAL "NONE")
+        message (STATUS "HTTPS transport disabled")
     else ()
-        message(FATAL_ERROR "Unknown HTTP transport: ${CRASHPAD_HTTP_TRANSPORT}")
+        message(FATAL_ERROR "Unknown HTTPS transport: ${CRASHPAD_HTTPS_TRANSPORT}")
     endif ()
 endif (LINUX)
 
@@ -393,7 +395,7 @@ if (APPLE)
 endif (APPLE)
 
 
-if (CRASHPAD_HTTP_TRANSPORT STREQUAL "OPENSSL")
+if (CRASHPAD_HTTPS_TRANSPORT STREQUAL "OPENSSL")
     if (NOT ANDROID)
         find_package(OpenSSL REQUIRED)
         target_compile_definitions(util PUBLIC CRASHPAD_USE_BORINGSSL)
@@ -402,7 +404,7 @@ if (CRASHPAD_HTTP_TRANSPORT STREQUAL "OPENSSL")
         target_link_libraries(util PUBLIC openssl-android-binary)
         target_compile_definitions(util PUBLIC CRASHPAD_USE_BORINGSSL)
     endif()
-elseif (CRASHPAD_HTTP_TRANSPORT STREQUAL "CURL")
+elseif (CRASHPAD_HTTPS_TRANSPORT STREQUAL "CURL")
     target_link_libraries(util PUBLIC CURL::libcurl)
 # elseif(ANDROID)
     # if (ANDROID_SSL_MODE STREQUAL "OPENSSL")
@@ -436,11 +438,11 @@ else ()
 endif ()
 
 if (ANDROID)
-    if (CRASHPAD_HTTP_TRANSPORT STREQUAL "OPENSSL")
+    if (CRASHPAD_HTTPS_TRANSPORT STREQUAL "OPENSSL")
         # handled above
-    elseif(CRASHPAD_HTTP_TRANSPORT STREQUAL "NONE")
+    elseif(CRASHPAD_HTTPS_TRANSPORT STREQUAL "NONE")
     else()
-        message(FATAL_ERROR "Unknown value for CRASHPAD_HTTP_TRANSPORT: ${CRASHPAD_HTTP_TRANSPORT}")
+        message(FATAL_ERROR "Unknown value for CRASHPAD_HTTPS_TRANSPORT: ${CRASHPAD_HTTPS_TRANSPORT}")
     endif ()
 endif (ANDROID)
 

@@ -198,7 +198,7 @@ jobs:
       - name: CMake
         run: |
           mkdir cbuild
-          cmake -S . -B cbuild/ -DCMAKE_TOOLCHAIN_FILE=$ANDROID_HOME/ndk/${{ matrix.ndk }}/build/cmake/android.toolchain.cmake -DANDROID_ABI=${{ matrix.abi }} -DANDROID_PLATFORM=android-${{ matrix.apiLevel }} -DANDROID_NATIVE_API_LEVEL=${{ matrix.apiLevel }} -DANDROID_TOOLCHAIN=clang -DCRASHPAD_HTTP_TRANSPORT=${{ env.SSL_MODE }} -DBUILD_EXAMPLES=TRUE
+          cmake -S . -B cbuild/ -DCMAKE_TOOLCHAIN_FILE=$ANDROID_HOME/ndk/${{ matrix.ndk }}/build/cmake/android.toolchain.cmake -DANDROID_ABI=${{ matrix.abi }} -DANDROID_PLATFORM=android-${{ matrix.apiLevel }} -DANDROID_NATIVE_API_LEVEL=${{ matrix.apiLevel }} -DANDROID_TOOLCHAIN=clang -DCRASHPAD_HTTPS_TRANSPORT=${{ env.SSL_MODE }} -DBUILD_EXAMPLES=TRUE
           cmake --build cbuild/
 
       - name: Crashpad distribution ZIP
