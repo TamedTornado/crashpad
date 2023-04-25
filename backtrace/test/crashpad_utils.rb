@@ -3,6 +3,7 @@
 require 'httpclient'
 require 'json'
 require 'os'
+require 'process'
 require 'webrick'
 require 'zlib'
 
