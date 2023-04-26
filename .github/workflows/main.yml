@@ -36,7 +36,7 @@ jobs:
       - name: CMake
         run: |
           mkdir cbuild
-          cmake -S . -B cbuild/ -DBUILD_EXAMPLES=TRUE -G "${{ matrix.generator }}"
+          cmake -S . -B cbuild/ -DCRASHPAD_BUILD_EXAMPLES=TRUE -G "${{ matrix.generator }}"
           cmake --build cbuild/
 
       - uses: ruby/setup-ruby@v1
@@ -88,7 +88,7 @@ jobs:
 
           # run CMake (additional options like -DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE are possible)
           # it is recommended to specify the compiler version used for the build
-          cmake -S . -B cbuild/ -DBUILD_EXAMPLES=TRUE -G "${{ matrix.generator }}" -DCMAKE_CXX_COMPILER=cl.exe -DCMAKE_C_COMPILER=cl.exe
+          cmake -S . -B cbuild/ -DCRASHPAD_BUILD_EXAMPLES=TRUE -G "${{ matrix.generator }}" -DCMAKE_CXX_COMPILER=cl.exe -DCMAKE_C_COMPILER=cl.exe
           cmake --build cbuild/
 
       - uses: ruby/setup-ruby@v1
@@ -131,7 +131,7 @@ jobs:
       - name: CMake
         run: |
           mkdir cbuild
-          cmake -S . -B cbuild/ -DBUILD_EXAMPLES=TRUE -DCMAKE_OSX_ARCHITECTURES=${{ matrix.arch }} -G "${{ matrix.generator }}"
+          cmake -S . -B cbuild/ -DCRASHPAD_BUILD_EXAMPLES=TRUE -DCMAKE_OSX_ARCHITECTURES=${{ matrix.arch }} -G "${{ matrix.generator }}"
           cmake --build cbuild/
 
       - uses: ruby/setup-ruby@v1
@@ -198,7 +198,7 @@ jobs:
       - name: CMake
         run: |
           mkdir cbuild
-          cmake -S . -B cbuild/ -DCMAKE_TOOLCHAIN_FILE=$ANDROID_HOME/ndk/${{ matrix.ndk }}/build/cmake/android.toolchain.cmake -DANDROID_ABI=${{ matrix.abi }} -DANDROID_PLATFORM=android-${{ matrix.apiLevel }} -DANDROID_NATIVE_API_LEVEL=${{ matrix.apiLevel }} -DANDROID_TOOLCHAIN=clang -DCRASHPAD_HTTPS_TRANSPORT=${{ env.SSL_MODE }} -DBUILD_EXAMPLES=TRUE
+          cmake -S . -B cbuild/ -DCMAKE_TOOLCHAIN_FILE=$ANDROID_HOME/ndk/${{ matrix.ndk }}/build/cmake/android.toolchain.cmake -DANDROID_ABI=${{ matrix.abi }} -DANDROID_PLATFORM=android-${{ matrix.apiLevel }} -DANDROID_NATIVE_API_LEVEL=${{ matrix.apiLevel }} -DANDROID_TOOLCHAIN=clang -DCRASHPAD_HTTPS_TRANSPORT=${{ env.SSL_MODE }} -DCRASHPAD_BUILD_EXAMPLES=TRUE
           cmake --build cbuild/
 
       - name: Crashpad distribution ZIP
