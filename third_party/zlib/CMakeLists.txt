@@ -43,6 +43,8 @@ target_sources(zlib PRIVATE
 )
 target_compile_features(zlib PUBLIC cxx_std_14)
 
+target_compile_options(zlib PRIVATE -msse4.2 -mpclmul)
+
 target_compile_definitions(zlib PUBLIC CRASHPAD_ZLIB_SOURCE_EMBEDDED)
 target_compile_definitions(zlib PUBLIC ZLIB_CONST)
 target_compile_definitions(zlib PUBLIC HAVE_STDARG_H)

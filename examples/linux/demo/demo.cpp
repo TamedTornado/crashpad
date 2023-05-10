@@ -29,6 +29,7 @@ startCrashHandler(std::string const& url, std::string const& handler_path,
      * so it knows how to process the incoming dump.
      */
     annotations["format"] = "minidump";
+    annotations["token"] = "8db2f1a6763c144fd3acd136667d5095de7fe1e4bc2a9a71d39f0c5473c1a150";
 
     /*
      * REMOVE THIS FOR ACTUAL BUILD.
@@ -76,7 +77,7 @@ int main(int argc, char** argv)
      * pane. Preferably, the SSL enabled port should
      * be used.
      */
-    std::string url("https://submit.backtrace.io/yolo/c5a3a1675dbcfa1d12fd7efbc7bef9350874654e55ff86478115c8bc00000000/minidump");
+    std::string url("https://submit.backtrace.io/playgoals/8db2f1a6763c144fd3acd136667d5095de7fe1e4bc2a9a71d39f0c5473c1a150/minidump");
 
     /*
      * ENSURE THIS VALUE IS CORRECT.
@@ -86,7 +87,7 @@ int main(int argc, char** argv)
      * significantly more robust than traditional in-process crash
      * handlers. This path may be relative.
      */
-    std::string handler_path("/home/myusername/demo_crashpad_cmake/build/crashpad/handler/handler");
+    std::string handler_path("/home/jason/projects/crashpad/cbuild/handler/handler");
 
     /*
      * ENSURE THIS VALUE IS CORRECT.

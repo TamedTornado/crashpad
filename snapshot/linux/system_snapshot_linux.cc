@@ -251,15 +251,16 @@ void SystemSnapshotLinux::CPUFrequency(uint64_t* current_hz,
   *current_hz = 0;
   *max_hz = 0;
 
-  ReadFreqFile(base::StringPrintf(
-                   "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_cur_freq",
-                   target_cpu_),
-               current_hz);
+  return;
+  // ReadFreqFile(base::StringPrintf(
+  //                  "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_cur_freq",
+  //                  target_cpu_),
+  //              current_hz);
 
-  ReadFreqFile(base::StringPrintf(
-                   "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_max_freq",
-                   target_cpu_),
-               max_hz);
+  // ReadFreqFile(base::StringPrintf(
+  //                  "/sys/devices/system/cpu/cpu%d/cpufreq/scaling_max_freq",
+  //                  target_cpu_),
+  //              max_hz);
 }
 
 uint32_t SystemSnapshotLinux::CPUX86Signature() const {
